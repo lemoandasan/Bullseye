@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Bullseye</string>
     <string name="instruction_text">PUT THE BULLSEYE AS CLOSE AS YOU CAN TO</string>
     <string name="target_value_text">42</string>
     <string name="min_value_text">1</string>
