@@ -4,4 +4,5 @@
     <string name="target_value_text">42</string>
     <string name="min_value_text">1</string>
     <string name="max_value_text">100</string>
+    <string name="hit_me_button_text">Hit Me!</string>
 </resources>
