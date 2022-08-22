@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
     private var sliderValue = 0
     private var targetValue = Random.nextInt(0, 100)
     private var totalScore = 0
+    private var currentRound = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         supportActionBar?.hide()
@@ -24,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.targetTextView.text = targetValue.toString()
         binding.gameScoreTextView?.text = getString(R.string.score_text, 0)
-        binding.gameRoundTextView?.text = getString(R.string.round_text, 1)
+        binding.gameRoundTextView?.text = getString(R.string.round_text, currentRound)
 
         binding.hitMeButton.setOnClickListener {
             showResult()
@@ -58,6 +59,10 @@ class MainActivity : AppCompatActivity() {
         builder.setMessage(dialogMessage)
         builder.setPositiveButton(R.string.result_dialog_button_text) { dialog, _ ->
             dialog.dismiss()
+            targetValue = Random.nextInt(0, 100)
+            binding.targetTextView.text = targetValue.toString()
+            currentRound += 1
+            binding.gameRoundTextView?.text = currentRound.toString()
         }
         builder.create().show()
     }
