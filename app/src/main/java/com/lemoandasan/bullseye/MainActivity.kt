@@ -2,7 +2,6 @@ package com.lemoandasan.bullseye
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.SeekBar
 import androidx.appcompat.app.AlertDialog
 import com.lemoandasan.bullseye.databinding.ActivityMainBinding
@@ -13,6 +12,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private var sliderValue = 0
     private var targetValue = Random.nextInt(0, 100)
+    private var totalScore = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         supportActionBar?.hide()
@@ -27,8 +27,9 @@ class MainActivity : AppCompatActivity() {
         binding.gameRoundTextView?.text = getString(R.string.round_text, 1)
 
         binding.hitMeButton.setOnClickListener {
-            Log.i("**** button click", "the hit me button was tapped")
             showResult()
+            totalScore += pointsForCurrentRound()
+            binding.gameScoreTextView?.text = totalScore.toString()
         }
 
         binding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
