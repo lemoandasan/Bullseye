@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.SeekBar
 import androidx.appcompat.app.AlertDialog
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.lemoandasan.bullseye.databinding.ActivityMainBinding
 import kotlin.math.abs
 import kotlin.random.Random
@@ -17,6 +18,8 @@ class MainActivity : AppCompatActivity() {
     private var currentRound = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
+
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
@@ -104,7 +107,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun alertTitle(): String {
-        var difference = differenceAmount()
+        val difference = differenceAmount()
         val title: String = when {
             difference == 0 -> {
                 getString(R.string.alert_title_1)
