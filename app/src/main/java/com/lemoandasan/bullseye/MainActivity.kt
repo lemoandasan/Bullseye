@@ -15,12 +15,16 @@ class MainActivity : AppCompatActivity() {
     private var targetValue = Random.nextInt(0, 100)
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        supportActionBar?.hide()
+
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        var view = binding.root
+        val view = binding.root
         setContentView(view)
 
         binding.targetTextView.text = targetValue.toString()
+        binding.gameScoreTextView?.text = getString(R.string.score_text, 0)
+        binding.gameRoundTextView?.text = getString(R.string.round_text, 1)
 
         binding.hitMeButton.setOnClickListener {
             Log.i("**** button click", "the hit me button was tapped")
