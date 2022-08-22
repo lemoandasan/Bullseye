@@ -6,16 +6,21 @@ import android.util.Log
 import android.widget.SeekBar
 import androidx.appcompat.app.AlertDialog
 import com.lemoandasan.bullseye.databinding.ActivityMainBinding
+import kotlin.math.abs
+import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private var sliderValue = 0
+    private var targetValue = Random.nextInt(0, 100)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         var view = binding.root
         setContentView(view)
+
+        binding.targetTextView.text = targetValue.toString()
 
         binding.hitMeButton.setOnClickListener {
             Log.i("**** button click", "the hit me button was tapped")
@@ -34,9 +39,14 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    private fun pointsForCurrentRound(): Int {
+        return 100 - abs(targetValue - sliderValue)
+    }
+
     private fun showResult() {
         val dialogTitle = getString(R.string.result_dialog_title)
-        val dialogMessage = getString(R.string.result_dialog_message, sliderValue)
+        val dialogMessage = getString(R.string.result_dialog_message, sliderValue,
+            pointsForCurrentRound())
         val builder = AlertDialog.Builder(this)
 
         builder.setTitle(dialogTitle)
