@@ -45,12 +45,14 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    private fun differenceAmount() = abs(targetValue - sliderValue)
+
     private fun pointsForCurrentRound(): Int {
-        return 100 - abs(targetValue - sliderValue)
+        return 100 - differenceAmount()
     }
 
     private fun showResult() {
-        val dialogTitle = getString(R.string.result_dialog_title)
+        val dialogTitle = alertTitle()
         val dialogMessage = getString(R.string.result_dialog_message, sliderValue,
             pointsForCurrentRound())
         val builder = AlertDialog.Builder(this)
@@ -65,5 +67,25 @@ class MainActivity : AppCompatActivity() {
             binding.gameRoundTextView?.text = currentRound.toString()
         }
         builder.create().show()
+    }
+
+    private fun alertTitle(): String {
+        var difference = differenceAmount()
+        val title: String = when {
+            difference == 0 -> {
+                getString(R.string.alert_title_1)
+            }
+            difference < 5 -> {
+                getString(R.string.alert_title_2)
+            }
+            difference <= 10 -> {
+                getString(R.string.alert_title_3)
+            }
+            else -> {
+                getString(R.string.alert_title_4)
+            }
+        }
+
+        return title
     }
 }

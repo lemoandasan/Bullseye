@@ -14,4 +14,8 @@
     <string name="current_round_label">Round</string>
     <string name="score_text">%1$d</string>
     <string name="round_text">%1$d</string>
+    <string name="alert_title_1">Perfect!</string>
+    <string name="alert_title_2">You almost had it!</string>
+    <string name="alert_title_3">Not bad.</string>
+    <string name="alert_title_4">Are you even trying?</string>
 </resources>
