@@ -11,7 +11,7 @@ import kotlin.random.Random
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private var sliderValue = 0
-    private var targetValue = Random.nextInt(0, 100)
+    private var targetValue = newTargetValue()
     private var totalScore = 0
     private var currentRound = 1
 
@@ -23,14 +23,16 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        binding.targetTextView.text = targetValue.toString()
-        binding.gameScoreTextView?.text = getString(R.string.score_text, 0)
-        binding.gameRoundTextView?.text = getString(R.string.round_text, currentRound)
+        startNewGame()
 
         binding.hitMeButton.setOnClickListener {
             showResult()
             totalScore += pointsForCurrentRound()
             binding.gameScoreTextView?.text = totalScore.toString()
+        }
+
+        binding.startOverButton?.setOnClickListener {
+            startNewGame()
         }
 
         binding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -47,6 +49,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun differenceAmount() = abs(targetValue - sliderValue)
 
+    private fun newTargetValue() = Random.nextInt(0, 100)
+
     private fun pointsForCurrentRound(): Int {
         val difference = differenceAmount()
         var bonus = 0
@@ -61,6 +65,18 @@ class MainActivity : AppCompatActivity() {
         return 100 - difference + bonus
     }
 
+    private fun startNewGame() {
+        totalScore = 0
+        currentRound = 1
+        sliderValue = 50
+        targetValue = newTargetValue()
+
+        binding.gameScoreTextView?.text = totalScore.toString()
+        binding.gameRoundTextView?.text = currentRound.toString()
+        binding.targetTextView.text = targetValue.toString()
+        binding.seekBar.progress = sliderValue
+    }
+
     private fun showResult() {
         val dialogTitle = alertTitle()
         val dialogMessage = getString(R.string.result_dialog_message, sliderValue,
@@ -71,7 +87,7 @@ class MainActivity : AppCompatActivity() {
         builder.setMessage(dialogMessage)
         builder.setPositiveButton(R.string.result_dialog_button_text) { dialog, _ ->
             dialog.dismiss()
-            targetValue = Random.nextInt(0, 100)
+            targetValue = newTargetValue()
             binding.targetTextView.text = targetValue.toString()
             currentRound += 1
             binding.gameRoundTextView?.text = currentRound.toString()
