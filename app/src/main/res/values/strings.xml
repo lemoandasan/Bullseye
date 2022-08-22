@@ -18,4 +18,6 @@
     <string name="alert_title_2">You almost had it!</string>
     <string name="alert_title_3">Not bad.</string>
     <string name="alert_title_4">Are you even trying?</string>
+    <string name="restart_button">Restart the game</string>
+    <string name="info_button">About Bullseye</string>
 </resources>
