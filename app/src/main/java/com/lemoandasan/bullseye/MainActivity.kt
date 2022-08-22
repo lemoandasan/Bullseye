@@ -48,7 +48,17 @@ class MainActivity : AppCompatActivity() {
     private fun differenceAmount() = abs(targetValue - sliderValue)
 
     private fun pointsForCurrentRound(): Int {
-        return 100 - differenceAmount()
+        val difference = differenceAmount()
+        var bonus = 0
+
+        if (difference == 0) {
+            bonus = 100
+        }
+        if (difference == 1) {
+            bonus = 50
+        }
+
+        return 100 - difference + bonus
     }
 
     private fun showResult() {
