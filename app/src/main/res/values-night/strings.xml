@@ -20,4 +20,5 @@
     <string name="alert_title_4">Are you even trying?</string>
     <string name="restart_button">Restart the game</string>
     <string name="info_button">About Bullseye</string>
+    <string name="bg_image_description">Image is a bullseye</string>
 </resources>
