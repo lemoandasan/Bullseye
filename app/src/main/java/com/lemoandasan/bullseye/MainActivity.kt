@@ -16,8 +16,6 @@ class MainActivity : AppCompatActivity() {
     private var currentRound = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        supportActionBar?.hide()
-
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
