@@ -8,6 +8,7 @@
 
     <TextView
         android:id="@+id/instructionTextView"
+        style="@style/instruction_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/instruction_text"
@@ -19,11 +20,11 @@
 
     <TextView
         android:id="@+id/targetTextView"
+        style="@style/big_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/target_value_text"
-        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/seekBar"
         app:layout_constraintEnd_toEndOf="@id/instructionTextView"
         app:layout_constraintStart_toStartOf="@id/instructionTextView"
@@ -116,6 +117,7 @@
 
         <TextView
             android:id="@+id/gameScoreTextView"
+            style="@style/game_stats_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/score_text" />
@@ -141,6 +143,7 @@
 
         <TextView
             android:id="@+id/gameRoundTextView"
+            style="@style/game_stats_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/round_text" />
